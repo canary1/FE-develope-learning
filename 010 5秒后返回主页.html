@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>5秒后返回主页</title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>   
+ </head>
+ <body>
+  <!--先编写好网页布局-->
+  <h3>操作成功</h3>
+  <p>
+  	<span id="second">5</span>秒后返回主页
+    <a id="back" href="javascript:;">返回</a>
+   </p>
+
+  <script type="text/javascript">  
+ 
+   //获取显示秒数的元素，通过定时器来更改秒数。
+    var oSecond=document.getElementById('second').innerHTML;
+	var oBack=document.getElementById('back');
+    setInterval(function(){
+		if(oSecond>1){
+			var num=parseInt(oSecond);
+			oSecond--;
+			document.getElementById('second').innerHTML=oSecond;
+		}
+        else{
+			location.assign('http://www.imooc.com');
+		}
+    },1000);
+   //通过window的location和history对象来控制网页的跳转。
+   oBack.onclick=function(){
+		history.back();   
+	};
+ </script> 
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> 表格的增删行</title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>   
+  <script type="text/javascript"> 
+  
+      window.onload = function(){
+                  
+     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+         var aTr=document.getElementsByTagName('tr');
+		 var oInput=document.getElementsByTagName('input')[0];
+		 var aTd=document.getElementsByTagName('td');
+		 var aA=document.getElementsByTagName('a');
+		
+		 for(var i=0;i<aTr.length;i++){
+			 aTr[i].onmouseover=function (){
+				 bgChange(this);
+			}
+			
+		}
+		for(var j=0;j<aA.length;j++){
+			aA[j].onclick=function(){
+				removeChild(this);	
+			}	
+		}
+		oInput.onclick=function(){
+			add();
+			for(var j=0;j<aA.length;j++){
+				aA[j].onclick=function(){
+					removeChild(this);	
+				}	
+			}	
+		};
+	 }
+	 
+	 function bgChange(obj){
+		obj.onmouseover=function (){
+			obj.style.backgroundColor='#f2f2f2';	
+		}
+		obj.onmouseout=function (){
+			obj.style.backgroundColor='';	
+		}
+	}
+     
+      // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+	  var num=2;
+     function add(){
+		 num++;
+		var oT=document.getElementById('table');
+		var oTr=document.createElement('tr');
+		var oTd1=document.createElement('td');
+		oTd1.innerHTML='xh00'+num;
+		var oTd2=document.createElement('td');
+		oTd2.innerHTML='第'+num+'学生';
+		var oTd3=document.createElement('td');
+		var oA=document.createElement('a');
+		var aTr=document.getElementsByTagName('tr')
+		oA.innerHTML='删除';
+		oA.href='#';
+		
+		oT.appendChild(oTr);
+		oTr.appendChild(oTd1);
+		oTr.appendChild(oTd2);
+		oTd3.appendChild(oA);
+		oTr.appendChild(oTd3);
+		for(var i=0;i<aTr.length;i++){
+			bgChange(aTr[i]);	
+		}
+
+	}
+    		
+   	 
+     // 创建删除函数
+     function removeChild(obj){
+         var oTr=obj.parentNode.parentNode;
+		 var oT=obj.parentNode.parentNode.parentNode;
+		 
+		 oT.removeChild(oTr);
+     }
+
+
+  </script> 
+ </head> 
+ <body> 
+	   <table border="1" width="50%" id="table">
+	   <tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>操作</th>
+	   </tr>  
+
+	   <tr>
+		<td>xh001</td>
+		<td>王小明</td>
+		<td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>
+
+	   <tr>
+		<td>xh002</td>
+		<td>刘小芳</td>
+		<td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>  
+
+	   </table>
+	   <input type="button" value="添加一行"  />   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>

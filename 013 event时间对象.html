@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function (){
+	var Go=document.getElementById('go');
+	var oBox=document.getElementById('box');
+	
+	addEvent(oBox,'click',function(){
+		alert('hello!');	
+	});
+	
+	addEvent(Go,'click',function(){
+		var ev=ev||window.event;
+		
+		preventDefault(ev);
+		stopBubble(ev);
+		alert(getType(ev));
+		alert(getElement(ev));
+	});	
+	
+}
+//为元素添加事件
+function addEvent(obj,ev,fun){
+	if(obj.addEventListener){
+		obj.addEventListener(ev,fun,false);	//DOM2级事件处理程序
+	}
+	else if(obj.attachEvent){
+		obj.attachEvent('on'+ev,fun);	//IE事件处理程序
+	}
+	else{
+		obj['on'+ev]=fun;	//DOM0级事件处理程序
+	}
+}
+//为元素删除事件
+function removeEvent(obj,ev,fun){
+	if(obj.removeEventListener){
+		obj.removeEventListener(ev,fun,false);	
+	}	
+	else if(obj.detachEvent){
+		obj.detachEvent('on'+ev,fun);	
+	}
+	else{
+		obj['on'+ev]=null;	
+	}
+}
+//获取事件类型
+function getType(ev){
+	var oEvent=ev||window.event;
+	return oEvent.type;
+}
+//获取事件的目标元素
+function getElement(ev){
+	var oEvent=ev||window.event;
+	if(oEvent.target){
+		return oEvent.target;
+	}
+	else{
+		return oEvent.srcElement;	
+	}	
+}
+//阻止事件冒泡
+function stopBubble(ev){
+	var oEvent=ev||window.event;
+	if(oEvent.stopPropagation){
+		oEvent.stopPropagation();	
+	}
+	else{
+		oEvent.cancelBubble=true;	
+	}
+}
+//阻止事件默认行为
+function preventDefault(ev){
+	var oEvent=ev||window.event;
+	if(oEvent.preventDefault){
+		oEvent.preventDefault();	
+	}
+	else{
+		oEvent.returnValue=false;	
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="box">
+    <a href="012 表格的增删行.html" id="go">跳转</a>
+</div>
+</body>
+</html>

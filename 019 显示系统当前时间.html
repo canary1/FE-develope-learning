@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1{
+	height:30px;
+	width:300px;
+	line-height:30px;
+	color:red;
+	font-size:14px;
+	text-align:center;
+	font-family:"微软雅黑";
+	margin:50px auto;
+	border:1px solid #9C9;
+}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	showTime();
+	//setInterval(showTime,1000);//使用setInterval时，可以通过每隔1s调用一次showTime函数来实现实践的显示，但是这种方法会在浏览器加载完成后1秒开始显示时间
+};
+//处理分和秒时间小于10的时候自动补0的问题
+function checkTime(t){
+	return t<10?'0'+t:t;
+}
+function showTime(){
+	var oDiv=document.getElementById('div1');
+	var days=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+	var myDate=new Date();
+	var year=myDate.getFullYear();
+	var month=myDate.getMonth()+1;
+	var date=myDate.getDate();
+	var day=myDate.getDay();
+	var hour=myDate.getHours();
+	var minute=myDate.getMinutes();
+	var second=myDate.getSeconds();
+	minute=checkTime(minute);
+	second=checkTime(second);
+	
+	oDiv.innerHTML=year+'年'+month+'月'+date+'日'+'&nbsp;'+days[day]+'&nbsp;'+hour+':'+minute+':'+second;	
+	setTimeout(showTime,500);//只有将setTimeout放在函数内是才能正确执行，且延时为500ms时在显示器中才能没1s改变一次
+}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

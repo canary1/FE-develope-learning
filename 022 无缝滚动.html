@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无缝滚动</title>
+<link rel="stylesheet" type="text/css" href="css/scroll.css" />
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	var content1=document.getElementById('content1');
+	var content2=document.getElementById('content2');
+	content2.innerHTML=content1.innerHTML;
+	oDiv.scrollTop=0;
+	var time=100;
+	var timer=null;
+	clearInterval(timer);
+	//实现无缝滚动
+	timer=setInterval(function(){
+		//当滚动高度正好等于第一个内容区时，让滚动距离变成0
+		if(oDiv.scrollTop>=content1.offsetHeight){
+			oDiv.scrollTop=0;	
+		}
+		else{
+			oDiv.scrollTop++	
+		}
+	},time);
+	//鼠标移入时停止滚动
+	oDiv.onmouseover=function(){
+		clearInterval(timer);	
+	};
+	//鼠标移出时继续滚动
+	oDiv.onmouseout=function(){
+		timer=setInterval(function(){
+			if(oDiv.scrollTop>=content1.offsetHeight){
+				oDiv.scrollTop=0;	
+			}
+			oDiv.scrollTop++;	
+		},time);
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="main">
+可以去的地方
+    <div id="div1">
+        
+        <ul id="content1">
+            <li><a href="#">西湖</a></li>
+            <li><a href="#">钱塘江</a></li>
+            <li><a href="#">工商大学</a></li>
+            <li><a href="#">河坊街</a></li>
+            <li><a href="#">理工后花园</a></li>
+            <li><a href="#">小湖边</a></li>
+            <li><a href="#">和达城</a></li>
+            <li><a href="#">弗雷德</a></li>
+            <li><a href="#">银泰</a></li>
+        </ul>
+        <ul id="content2"></ul>
+    </div>
+</div>
+</body>
+</html>

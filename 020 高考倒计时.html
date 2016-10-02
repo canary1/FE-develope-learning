@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{
+	padding:0;
+	margin:0;
+}
+#div1{
+	height:150px;
+	width:300px;
+	margin:50px auto;
+	border:1px solid #000;
+	background:#999;
+	font-size:20px;
+	font-family:"微软雅黑";
+	line-height:75px;
+	text-align:center;
+	color:#fff;
+}
+#div1 span{
+	font-size:26px;
+		
+}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	var span=oDiv.getElementsByTagName('span')[0];
+	var curTime=new Date();
+	var examTime=new Date('2017,6,6');
+	var timeLength=Math.ceil((examTime.getTime()-curTime.getTime())/1000/60/60/24);//getTime将时间换算成毫秒数，再通过换算变成天数后向上取整
+	//时间换算：毫秒数/1000/60/60/24
+	
+	if(timeLength>0){
+		span.innerHTML=timeLength;  //将时间加入到span对象中
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+距离高考还有<br/>
+<span>1</span>
+天
+</div>
+</body>
+</html>

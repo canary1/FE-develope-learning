@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商城导航css实现</title>
+<style type="text/css">
+body{
+	padding:0;
+	margin:0;
+	font-size:14px;
+	behavior:url(css/csshover.htc);//使用补丁文件解决ie6不支持a标签以外hover伪类的问题
+}
+.topmenu{
+	display:block;
+	width:220px;
+	border:2px solid #e4393c;
+	margin:0;
+	padding:0;
+}
+.toptitle{
+	height:40px;
+	line-height:40px;
+	text-align:left;
+	font-size:11pt;
+	font-weight:bold;
+	color:#fff;
+	background:#e4393c;
+	padding-left:20px;
+}
+.topmenu li{
+	height:30px;
+	line-height:30px;
+	font-size:11pt;
+	padding-left:8px;
+	list-style-type:none;
+	text-align:left;
+	z-index:3;
+}
+.topmenu li a{
+	text-decoration:none;
+	color:#313131;
+}
+.topmenu li span{
+	display:block;
+	float:right;
+	margin-right:10px;
+	font-size:11pt;
+	font-weight:bold;
+	color:#ccc;
+}
+.topmenu li:hover{
+	border:1px solid #ddd;
+	border-right:0;
+	box-shadow:0 0 8px #ddd;
+	-webkit-box-shadow:0 0 8px #ddd; //谷歌浏览器阴影设置
+	-moz-box-shadow:0 0 8px #ddd; //针对火狐浏览器阴影设置
+}
+.topmenu li:hover span{
+	display:none;
+}
+.topmenu li a:hover{   //当鼠标移动到li时，隐藏右侧箭头
+	text-decoration:underline;
+	font-weight:bold;
+	color:#e4393c;
+}
+.submenu{
+	display:none;
+	width:715px;
+	height:220px;
+	border:1px solid #ddd;
+	position:absolute;
+	z-index:4;
+	top:40px;
+	left:220px;
+	background:white;
+	box-shadow:0 0 8px #ddd;
+	-webkit-box-shadow:0 0 8px #ddd;
+	-moz-box-shadow:0 0 8px #ddd;
+}
+.subleft{
+	float:left;
+	background:gray;
+	width:490px;
+	margin:5px;
+}
+.subright{
+	float:left;
+	background:gray;
+	width:200px;
+	margin:5px;
+}
+.topmenu li:hover .submenu{ //当鼠标移动到li层时显示二级菜单
+	display:block;
+}
+</style>
+</head>
+
+<body>
+<ul class="topmenu">
+	<div class="toptitle">全部商品分类</div>
+	<li><a href="#">图书、音像、数字产品</a><span>></span>
+    	<div class="submenu">
+        	<div class="subleft">
+           	   <dl>
+                	<dt><a href="#">电子书</a></dt>
+                    <dd>
+                    	<a href="#">免费</a>
+                        <a href="#">小说</a>
+                        <a href="#">励志与成功</a>
+                        <a href="#">婚恋/两性</a>
+                        <a href="#">文学</a>
+                        <a href="#">经管</a>
+                        <a href="#">畅读VIP</a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="subright">
+            	左侧商品展示
+            </div>
+        </div>
+    </li>
+    <li><a href="#">家用电器</a><span>></span></li>
+    <li><a href="#">手机、数码</a><span>></span></li>
+    <li><a href="#">电脑、办公</a><span>></span></li>
+    <li><a href="#">家居、家具、家装、厨具</a><span>></span></li>
+    <li><a href="#">富服饰内衣、珠宝首饰</a><span>></span></li>
+    <li><a href="#">个护化妆</a><span>></span></li>
+    <li><a href="#">鞋靴、箱包、钟表、奢侈品</a><span>></span></li>
+    <li><a href="#">运动户外</a><span>></span></li>
+    <li><a href="#">汽车用品</a><span>></span></li>
+    <li><a href="#">母婴、玩具乐器</a><span>></span></li>
+    <li><a href="#">食品饮料、酒类、生鲜</a><span>></span></li>
+    <li><a href="#">营养保健</a><span>></span></li>
+</ul>
+</body>
+</html>

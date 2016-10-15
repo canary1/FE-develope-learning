@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery Validation 插件</title>
+    <link rel="stylesheet" href="css/024.css"/>
+</head>
+<body>
+<form id="demoForm">
+    <fieldset>
+        <legend>用户登录</legend>
+        <p id="info"></p>
+
+        <p>
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username"/>
+        </p>
+
+        <p>
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password"/>
+        </p>
+
+        <p>
+            <label for="confirm-password">确认密码</label>
+            <input type="password" id="confirm-password" name="confirm-password"/>
+        </p>
+
+        <p>
+            <input type="submit" value="登录"/>
+            <input id="check" name="check" type="button" value="确认信息" />
+        </p>
+    </fieldset>
+</form>
+
+<script src="js/jquery-1.10.0.js"></script>
+<script src="js/jquery.validate-1.13.1.js"></script>
+<script>
+	var validator;
+    $(document).ready(function () {
+        validator=$("#demoForm").validate({
+			debug:true, //表单不会提交，只会检查
+            rules: {
+                username: {
+                    required:{
+						depends:function(element){
+							return $("#password").is(":filled");
+						},	//当password被填写时，才触发username的required方法
+					},
+                    minlength: 2,  //最小长度
+                    maxlength: 10, //最大长度
+					rangelength:[2,10], //相当于设置最小值最大值，取值范围
+					postcode:true,
+					/*remote:{     //远程校验
+						url:"remote.json",  //校验后台文件的url
+						type:"post",  //传送数据方法为post
+						date:{  //传送一个日期到后台
+							loginTime:function(){
+								return +new Date();
+							}	
+						}	
+					}*/
+                },
+                password: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 16
+                },
+                "confirm-password": {  //id名中间有-需要加双引号
+                    equalTo: "#password" //与另一个元素值是否相等
+                }
+            },
+            messages: {
+                username: {
+                    required: '请输入用户名',
+                    minlength: '用户名不能小于2个字符',
+                    maxlength: '用户名不能超过10个字符',
+					rangelength:'用户名应该在2到10位',
+                    remote: '用户名不存在'
+                },
+                password: {
+                    required: '请输入密码',
+                    minlength: '密码不能小于2个字符',
+                    maxlength: '密码不能超过16个字符'
+                },
+                "confirm-password": {
+                    equalTo: "两次输入密码不一致"
+                }
+            },
+			submitHandler:function(form){   //通过验证后提交的函数，可以加上表单提交的方法
+				console.log($(form).serialize()); //通过验证后，在控制台显示提交的信息
+			},
+			invalidHandler:function(event,validator){  //无效表单提交后运行的函数
+				console.log("错误数："+validator.numberOfInvalids());  //无效表单提交后在控制台显示错误数
+			},
+			//ignore:"#username",  //对指定元素不进行校验
+			groups:{  //验证一组元素，用一个错误提示
+				login:"username password confirm-password",	  //控制的元素
+			},
+			errorPlacement:function(error,element){  //配合groups使用，用于控制把错误信息放在哪里
+				error.insertBefore("#info");
+			},
+			showErrors:function(errorMap,errorList){  //显示共有多少个未通过验证的元素
+				console.log(errorMap);  //在控制台显示errorMap的相关信息
+				console.log(errorList);  //在控制台显示errorList的相关信息
+				this.defaultShowErrors();  //使用默认的错误信息显示方式
+			},
+			highlight:function(element,errorClass,validClass){  //给未通过验证的元素添加效果
+				$(element).addClass(errorClass).removeClass(validClass);  //为未通过的元素添加errorClass类，移除validClass类
+				$(element).fadeOut().fadeIn();  //给未通过验证的元素添加一个淡出淡入的效果
+			},
+			unhighlight:function(element,errorClass,validClass){  //去除未通过验证的元素的效果
+				$(element).addClass(validClass).removeClass(errorClass);  //给通过的元素添加validClass类，移除errorClass类
+			},
+        });
+		$.validator.addMethod("postcode",function(value,element,params){
+			var postcode=/^[0-9]{6}$/;   //定义一个邮编的正则表达式
+			//return (postcode.test(value));  //返回邮编元素的值（值为空时也触发该验证方法）,返回结果为true
+			return this.optional(element)||(postcode.test(value));  //或前面内容表示值为空时不触发该验证方法
+		},"请填写正确的邮编！")
+		$('#check').click(function(){
+			alert($('#demoForm').valid()?"信息填写正确":"信息填写错误");	  //检查表单元素是否有效
+		});
+    });
+</script>
+
+</body>
+</html>

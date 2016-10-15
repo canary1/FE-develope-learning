@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	padding:0;
+	margin:0;
+}
+#login{
+	height:200px;
+	width:400px;
+	background:#9F9;
+	border:2px groove #ccc;
+	margin:10px auto;
+}
+span{
+	height:25px;
+	padding-left:150px;
+	line-height:25px;
+	font-size:20px;
+	font-family:"微软雅黑";
+	text-align:center;
+}
+p{
+	height:25px;
+	line-height:25px;
+	margin-top:20px;
+	font-size:14px;
+	font-family:"微软雅黑";
+	text-align:center;
+}
+input{
+	height:16px;
+}
+#btnlogin{
+	height:25px;
+	width:60px;
+	font-size:16px;
+	font-family:"微软雅黑";
+}
+

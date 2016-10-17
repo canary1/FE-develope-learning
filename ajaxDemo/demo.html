@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Demo</title>
+<style type="text/css">
+*{
+	padding:0;
+	margin:0;
+}
+input,h3,select,label{
+	font-size:16px;
+	font-family:"微软雅黑";
+	line-height:40px;
+	margin-top:10px;
+}
+div{
+	width:400px;
+	margin:50px auto;
+	border:1px solid #ccc;
+	padding-left:20px;
+}
+</style>
+</head>
+
+<body>
+<div>
+    <h3>员工查询</h3>
+    <label>请输入员工编号：</label>
+    <input id="inputNumber" type="text" />
+    <input id="search" type="button" value="查询" />
+    <p id="searchResult"></p>
+    
+    <h3>员工新建</h3>
+    <label>请输入员工姓名：</label>
+    <input id="createName" type="text" /><br/>
+    <label>请输入员工编号：</label>
+    <input id="createNumber" type="text" /><br/>
+    <label>请选择员工性别：</label>
+    <select id="createSex">
+        <option>男</option>
+        <option>女</option>
+    </select>
+    <br/>
+    <label>请输入员工职位：</label>
+    <input id="createJob" type="text" /><br/>
+    <input id="create" type="button" value="新建" />
+    <p id="createResult"></p>
+</div>
+<script type="text/javascript">
+window.onload=function(){
+	var oSearch=document.getElementById('search');
+	var oInputNumber=document.getElementById('inputNumber');
+	var oSearchResult=document.getElementById('searchResult');
+	var oCreate=document.getElementById('create');
+	var oCreateResult=document.getElementById('createResult');
+	var oCreateName=document.getElementById('createName');
+	var oCreateNumber=document.getElementById('createNumber');
+	var oCreateSex=document.getElementById('createSex');
+	var oCreateJob=document.getElementById('createJob');
+	var request;
+	
+	oSearch.onclick=function(){
+		//发送ajax请求
+		//实例化XHR对象
+		if(window.XMLHttpRequest){
+			request=new XMLHttpRequest();  //兼容IE5和IE6以外的其他浏览器
+		}
+		else{
+			request=new ActiveXObject("Microsoft.XMLHttp");  //兼容IE5和IE6	
+		}
+		//XHR发送请求
+		//request.open("GET","php/service.php?number=" + oInputNumber.value);
+		request.open("GET","php/servicejsonp.php?number="+oInputNumber.value);  //使用json格式的服务器端校验数据
+		request.send();
+		//XHR响应请求
+		request.onreadystatechange=function(){
+			if(request.readyState===4){  //如果请求完成
+				if(request.status===200){  //如果连接成功就在P标签中添加响应的字符串形式的数据
+					//使用json格式的后台数据进行的响应信息
+					var data=JSON.parse(request.responseText);  //使用JSON.parse对JSON格式的数据进行解析
+					if(data.success){
+						oSearchResult.innerHTML=data.msg;
+					}
+					else{
+						oSearchResult.innerHTML="发生错误："+data.msg;	
+					}
+					//oSearchResult.innerHTML=request.responseText;  
+				}
+				else{
+					alert("发生错误："+request.status);	//如果连接失败，就弹出错误信息及相应的状态码
+				}	
+			}	
+			
+		};
+	};
+	oCreate.onclick=function(){
+		//新建一个变量用于存储传入数据
+		var data="name="+oCreateName.value+"&number="+ oCreateNumber.value+"&sex="+ oCreateSex.value+"&job="+oCreateJob.value;
+		if(window.XMLHttpRequest){
+			request=new XMLHttpRequest();	
+		}
+		else{
+			request=new ActiveXObject("Microsoft.XMLHttp");	
+		}
+		//request.open("POST","php/service.php");  //POST方法，不用将数据传入到url中
+		request.open("POST","php/servicejsonp.php");  //使用json格式的服务器端校验格式
+		request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");  //在open和send中间需要设置发送请求的头文件（POST方法时设置），告诉服务器这是一个POST请求的，请求是以url的方式发送过来的
+		request.send(data);  //将数据以字符串的形式发送到服务器
+		request.onreadystatechange=function(){
+			if(request.readyState===4){
+				if(request.status===200){
+					var data=JSON.parse(request.responseText);
+					if(data.success){
+						oCreateResult.innerHTML=data.msg;	
+					}
+					else{
+						oCreateResult.innerHTML="信息错误："+data.msg;
+					}
+					//oCreateResult.innerHTML=request.responseText;
+				}
+				else{
+					alert("发生错误："+request.status);	
+				}
+			}
+		};
+	};
+	
+};
+</script>
+</body>
+</html>

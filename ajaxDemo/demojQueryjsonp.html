@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DemojQueryjsonp</title>
+<script type="text/javascript" src="js/jquery-3.0.0.js"></script>
+<style type="text/css">
+*{
+	padding:0;
+	margin:0;
+}
+input,h3,select,label{
+	font-size:16px;
+	font-family:"微软雅黑";
+	line-height:40px;
+	margin-top:10px;
+}
+div{
+	width:400px;
+	margin:50px auto;
+	border:1px solid #ccc;
+	padding-left:20px;
+}
+</style>
+</head>
+
+<body>
+<div>
+    <h3>员工查询</h3>
+    <label>请输入员工编号：</label>
+    <input id="inputNumber" type="text" />
+    <input id="search" type="button" value="查询" />
+    <p id="searchResult"></p>
+    
+    <h3>员工新建</h3>
+    <label>请输入员工姓名：</label>
+    <input id="createName" type="text" /><br/>
+    <label>请输入员工编号：</label>
+    <input id="createNumber" type="text" /><br/>
+    <label>请选择员工性别：</label>
+    <select id="createSex">
+        <option>男</option>
+        <option>女</option>
+    </select>
+    <br/>
+    <label>请输入员工职位：</label>
+    <input id="createJob" type="text" /><br/>
+    <input id="create" type="button" value="新建" />
+    <p id="createResult"></p>
+</div>
+<script type="text/javascript">
+//使用jQuery实现ajax
+$(document).ready(function(){
+	$("#search").click(function(){
+		jQuery.ajax({   
+			type:"GET", //类型
+			url:"http://127.0.0.1:8080/ajaxDemo/php/servicejsonp.php?number="+$("#inputNumber").val(),  //发送请求的地址
+			dataType:"jsonp",  //服务器返回的数据类型，使用jsonp解决跨域问题
+			jsonp:"callback",  //使用jsonp解决跨域问题，jsonp的值可以为任意值
+			//请求成功后的回调函数，传入返回后的数据，以及包含成功代码的字符串
+			success: function(data){  
+				if(data.success){
+					$("#searchResult").html(data.msg);	
+				}
+				else{
+					$("#searchResult").html("发生错误："+data.msg);	
+				}
+			},
+			//请求失败后的回调函数，注意传入参数
+			error: function(jqXHR){
+				alert("发生错误："+jqXHR.status);
+			}
+		});	
+	});	
+	$("#create").click(function(){
+		jQuery.ajax({
+			type:"POST",
+			url:"http://127.0.0.1:8080/ajaxDemo/php/servicejsonp.php",  //跨域
+			dataType:"json",
+			//使用data方式传入数据
+			data:{
+				name:$("#createName").val(),
+				number:$("#createNumber").val(),
+				sex:$("#createSex").val(),
+				job:$("#createJob").val()	
+			},
+			success: function(data){
+				if(data.success){
+					$("#createResult").html(data.msg);
+				}
+				else{
+					$("#createResult").html("发生错误："+data.msg);
+				}
+			},
+			error: function(jqXHR){
+				alert("发生错误："+jqXHR.status);
+			}	
+		});	
+	});
+});
+</script>
+</body>
+</html>

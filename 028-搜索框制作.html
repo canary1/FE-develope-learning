@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>bing搜索框制作</title>
+<style type="text/css">
+body{
+	padding:0;
+	margin:0;
+	background:#333;
+	behavior:url(css/csshover.htc);
+}
+.bg-div{
+	height:690px;
+	width:1228px;
+	margin:0 auto;
+	background-image:url(images/river.jpg);
+}
+.logo{
+	float:left;
+	height:53px;
+	width:107px;
+	background-image:url(images/logo.png);
+	margin:200px 20px 0 270px;
+}
+form{
+	background:#fff;
+	float:left;
+	padding:5px;
+	margin-top:210px;
+}
+input{
+	border:none;
+	height:25px;
+	line-height:25px;
+}
+#content{
+	width:300px;
+	outline:none;  /*鼠标聚焦时不显示外边框*/
+}
+#search{
+	background:url(images/search-button.png);
+	height:30px;
+	width:30px;
+	text-indent:30px;
+	overflow:hidden;
+	cursor:pointer;
+}
+#tips{
+	list-style-type:none;
+	height:auto;
+	width:348px;
+	background:#fff;
+	padding:0;
+	margin-top:0px;
+	border:1px solid #ccc;
+	box-shadow:0 0 3px #ccc;
+}
+.li{
+	cursor:pointer;
+}
+.li:hover{
+	background:#999;
+}
+.a{
+	text-decoration:none;
+	color:#333;
+	height:30px;
+	width:348px;
+	line-height:30px;
+	font-size:14px;
+	font-family:"微软雅黑";
+	margin-left:10px;
+}
+</style>
+<script type="text/javascript" src="js/028.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.0.js"></script>
+</head>
+
+<body>
+	<div class="bg-div">
+    	<div class="logo"></div>
+        <form>
+        	<input type="text" id="content" />
+            <input type="button" id="search"  value="搜索"/>
+        </form>
+        
+    </div>
+    <ul id="tips">
+    	
+    </ul>
+</body>
+</html>

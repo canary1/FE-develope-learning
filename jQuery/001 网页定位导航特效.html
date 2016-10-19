@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>地狗购物网网页定位导航特效</title>
+<link rel="stylesheet" type="text/css" href="css/001.css" />
+<script type="text-javascript" src="js/jquery-1.10.0.js"></script>
+<script type="text-javascript">
+$(document).ready(function() {
+	//滚动条发生滚动的时候
+    $(window).scroll(function(){
+		var top=$(document).scrollTop();  //获取滚动条滚动的距离
+		var menu=$("#menu");
+		var items=$("#content").find(".item");  //使用find方法获取元素效率较高，jQuery中使用id筛选效率永远比用class高很多
+		var currentID="";  //用于获取当前所在item的ID
+		
+		items.each(function() {  //使用each遍历jQuery对象
+			var t=$(this);   //使用一个变量来获取this，这是一个好的习惯
+			var itemHeight=t.offset().top;   //获取每一个item的高度
+			if(top>itemHeight-300){
+				currentID="#"+t.attr("id");  //获取当前item的id
+			}
+			else{
+				return false; //如果小于，就直接跳出函数	
+			}
+        });
+		//获取聚焦到的item的id，并进行class的设置
+		var currentLink=menu.find(".current");  //先找到设置的这个类
+		if(currentID && currentLink.attr("href") != currentID){  //如果获取到了现在item的id并且现在的连接不是指向这个ID的时候就执行
+			currentLink.removeClass("current");  //移除现在加了current的链接的current
+			menu.find("[href=" + currentID + "]").addClass("current");  //找到menu中href是现在聚焦的id并添加类
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<ul id="menu">
+    <li><a href="#item1" class="current">1F 男装</a></li>
+    <li><a href="#item2">2F 女装</a></li>
+    <li><a href="#item3">3F 美妆</a></li>
+    <li><a href="#item4">4F 数码</a></li>
+    <li><a href="#item5">5F 母婴</a></li>
+</ul>
+
+<div id="content">
+	<h1>地狗购物网</h1>
+    <div id="item1" class="item">
+    	<h2>1F 男装</h2>
+    	<ul>
+        	<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/1F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item2" class="item">
+    	<h2>2F 女装</h2>
+    	<ul>
+        	<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/2F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item3" class="item">
+    	<h2>3F 美妆</h2>
+    	<ul>
+        	<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/3F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item4" class="item">
+    	<h2>4F 数码</h2>
+    	<ul>
+        	<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+            <li><a href="#"><img src="img/4F.png" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item5" class="item">
+    	<h2>5F 母婴</h2>
+    	<ul>
+        	<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="img/5F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

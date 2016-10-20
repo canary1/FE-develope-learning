@@ -53,17 +53,29 @@ window.onload=function(){
 				oA.innerHTML= t.inner;
 				oA.className='a';
 				oLi.appendChild(oA);
-				aLi[0].style.background='#999';
+				//aLi[0].style.background='#999';
 			}
 		}
 		
 		if(oEvent.keyCode==40){
-			if(aLi.length>0){
-				for(var j in aLi){
-					
-				}	
+			//aLi[0].style.background='#fff';
+			if(flag<aLi.length){
+				aLi[flag].style.background='#999';
+				flag++;
+			}
+			else{
+				flag=0;	
 			}
 			
+		}
+		if(oEvent.keyCode==38){
+			if(flag>0){
+				aLi[flag].style.background='#999';
+				flag--;	
+			}	
+			else{
+				flag=aLi.length-1;	
+			}
 		}
 	}
 	

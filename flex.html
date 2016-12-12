@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>多列显示样式的实现</title>
+	<style type="text/css">
+		.wrap{
+			width: 500px;
+			border: 1px solid #ccc;
+			overflow: hidden;
+			background-color: #ccc;
+		}
+		.main{
+			float: left;
+			width: 100%;
+			background-color: pink;
+		}
+		#A{
+			height: 50px;
+			margin: 0 150px;
+			background: red;
+		}
+		#B{
+			float: left;
+			width: 150px;
+			height: 50px;
+			background-color: yellow;
+			margin-left: -100%;    /*与A同行显示*/
+		}
+		#C{
+			float: right;
+			width: 150px;
+			height: 50px;
+			background-color: green;
+			margin-left: -100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="main">
+			<div id="A">A</div>
+		</div>
+		<div id="B">B</div>
+		<div id="C">C</div>
+	</div>
+</body>
+</html>

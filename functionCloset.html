@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>查找离它自身最近的父节点</title>
+	<script type="text/javascript">
+		function closet(ele,classname) {
+			if(ele){
+				if(ele.className==classname){
+					return ele.parentNode;
+				}
+				else{
+					return ele.parentNode=null;
+				}
+			}
+			else{
+				console.log("该元素不存在！");
+			}	
+		}
+
+		closet('div','list');
+	</script>
+</head>
+<body>
+	<div class="list">
+		<h1>返回子元素</h1>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</div>
+</body>
+</html>

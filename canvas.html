@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas画圆</title>
+</head>
+<body>
+	<canvas id="myCanvas" width="200" height="200" style="border: 2px solid blue;">
+		您的浏览器不支持。
+	</canvas>
+	<script type="text/javascript">
+		var c=document.getElementById("myCanvas");
+		var cxt=c.getContext("2d");
+
+		cxt.fillStyle="#FF0000";
+		cxt.beginPath();
+		cxt.arc(100,100,75,0,Math.PI*2,true);
+		cxt.closePath();
+		cxt.fill();
+	</script>
+</body>
+</html>

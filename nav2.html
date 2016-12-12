@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>水平带斜角菜单的制作</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#menu{
+			font-family: "微软雅黑";
+			font-size: 14px;
+			margin: 10px;
+			list-style-type: none;
+		}
+		#menu li{
+			float: left;
+		}
+		#menu li a{
+			display: block;
+			height: 30px;
+			line-height: 30px;
+			background-color: #aaa;
+			text-decoration: none;
+			color: #FFF;
+			padding: 0 10px;
+			margin: 0 10px;
+			position: relative;
+		}
+		#menu li a .corner{
+			position: absolute;
+			height: 0;
+			width: 0;
+			overflow: hidden;
+			border-bottom: solid 6px #aaa;
+			border-left: solid 6px #fff;
+			top: 0;
+			left: 0;
+		}
+		#menu li a:hover{
+			background-color: #ccc;
+			color: red;
+		}
+		#menu li a:hover .corner{
+			border-bottom: solid 6px #ccc;
+		}
+	</style>
+</head>
+<body>
+	<ul id="menu">
+		<li><a href="#"><span class="corner"></span>主页</a></li>
+		<li><a href="#"><span class="corner"></span>联系我们</a></li>
+		<li><a href="#"><span class="corner"></span>网站设计</a></li>
+		<li><a href="#"><span class="corner"></span>网站结构</a></li>
+		<li><a href="#"><span class="corner"></span>地图</a></li>
+	</ul>
+</body>
+</html>

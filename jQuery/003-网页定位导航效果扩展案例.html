@@ -1,105 +1,90 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8"/>
 <title>网页定位导航效果扩展案例</title>
 <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 12px;
+	line-height: 1.7;
+	background-color: #888;
+}
+li {
+	list-style: none;
+}
+#content {
+	width: 1000px;
+	margin: 100px auto;
+	margin-bottom:20px;
+}
+#content .item{
+	position:relative;
+	height:540px;
+}
+#content .item img {
+	position: absolute;
+	top: 100px;
+	right:0;
+}
+#content #item1 {
+	background:url(img/bg_1.jpg) no-repeat center top;
+}
+#content #item2 {
+	background:url(img/bg_2.jpg) no-repeat center top;
+}
+#content #item3 {
+	background:url(img/bg_3.jpg) no-repeat center top;
+}
+#content #item4 {
+	background:url(img/bg_4.jpg) no-repeat center top;
+}
+#content #item5 {
+	background:url(img/bg_5.jpg) no-repeat center top;
+}
+#menu{
+	position:fixed;
+}
 
-        body {
-            font-size: 12px;
-            line-height: 1.7;
-            background-color: #888;
-        }
+#menu h1 {
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	background: #ee1111;
+	line-height: 30px;
+}
+#menu ul li a {
+	display: block;
+	margin: 5px 0;
+	font-size: 12px;
+	color: #ccc;
+	width: 160px;
+	padding: 10px 20px;
+	text-decoration: none;
+	text-align: left;
+	border-bottom: 1px dashed #999;
+}
 
-        li {
-            list-style: none;
-        }
-
-        #content {
-            width: 1000px;
-            margin: 100px auto;
-			margin-bottom:20px;
-        }
-		#content .item{
-			position:relative;
-			height:540px;
-		}
-        #content .item img {
-            position: absolute;
-            top: 100px;
-            right:0;
-        }
-
-        #content #item1 {
-            background: url("http://img.mukewang.com/536c9ea800013ae610000540.jpg") no-repeat center top;
-        }
-
-        #content #item2 {
-            background: url("http://img.mukewang.com/536c9ecd0001606d10000540.jpg") no-repeat center top;
-        }
-
-        #content #item3 {
-            background: url("http://img.mukewang.com/536c9f0a0001ccc310000540.jpg") no-repeat center top;
-        }
-
-        #content #item4 {
-            background: url("http://img.mukewang.com/536c9f6700012e9010000540.jpg") no-repeat center top;
-        }
-
-        #content #item5 {
-            background: url("http://img.mukewang.com/536c9f800001b28510000540.jpg") no-repeat center top;
-		}
-		#menu{
-			position:fixed;
-		}
-
-
-        #menu h1 {
-            color: #fff;
-            font-size: 14px;
-            text-align: center;
-            background: #ee1111;
-            line-height: 30px;
-        }
-
-        #menu ul li a {
-            display: block;
-            margin: 5px 0;
-            font-size: 12px;
-            color: #ccc;
-            width: 160px;
-            padding: 10px 20px;
-            text-decoration: none;
-            text-align: left;
-            border-bottom: 1px dashed #999;
-        }
-
-        #menu ul li a strong {
-            color: #f1f1f1;
-        }
-
-        #menu ul li a:hover,
-        #menu ul li a.current {
-            color: #fff;
-            background: #666;
-        }
-
-        /*ie6 hack*/
-        * html, * html body {
-            background-image: url(about:blank);
-            background-attachment: fixed;
-        }
-
-        * html #menu {
-            /*position: fixed;*/
-            position: absolute;
-            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
-        }
-
+#menu ul li a strong {
+	color: #f1f1f1;
+}
+#menu ul li a:hover,#menu ul li a.current {
+	color: #fff;
+	background: #666;
+}
+/*ie6 hack*/
+* html, * html body {
+	background-image: url(about:blank);
+	background-attachment: fixed;
+}
+* html #menu {
+	/*position: fixed;*/
+	position: absolute;
+	top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+}
 </style>
 <script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
 <script>
@@ -110,7 +95,7 @@
                 var items = $("#content").find(".item");
 				var currentId="";
 
-// 请补充此处代码，让导航菜单实现在滚动条滚动的时候自动设置焦点
+//让导航菜单实现在滚动条滚动的时候自动设置焦点
 				items.each(function() {
                     var t=$(this);
 					var itemTop= t.offset().top;
@@ -146,19 +131,19 @@
 </div>
 <div id="content">
     <div id="item1" class="item">
-        <img src="http://img.mukewang.com/536ca02800014e7105000400.jpg">
+        <img src="img/pic1.jpg" alt="">
     </div>
     <div id="item2" class="item">
-        <img src="http://img.mukewang.com/536ca04b0001dbeb04520519.jpg">
+        <img src="img/pic2.jpg" alt="">
     </div>
     <div id="item3" class="item">
-        <img src="http://img.mukewang.com/536ca06200016a4d03950387.jpg">
+        <img src="img/pic3.jpg" alt="">
     </div>
     <div id="item4" class="item">
-        <img src="http://img.mukewang.com/536ca0ab0001c89205000400.jpg">
+        <img src="img/pic4.jpg" alt="">
     </div>
     <div id="item5" class="item">
-        <img src="http://img.mukewang.com/536ca0830001b17f05000400.jpg">
+        <img src="img/pic5.jpg" alt="">
     </div>
 </div>
 </body>
